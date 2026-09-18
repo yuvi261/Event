@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campus Pulse</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="page-shell">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Student life</p>
+                    <h1>Campus Pulse</h1>
+                </div>
+                <div class="header-badge">
+                    <span class="status-dot"></span>
+                    Live dashboard
+                </div>
+            </header>
+
+            <section class="stats-grid" aria-label="Event overview">
+                <article class="stat-card primary-stat">
+                    <span class="stat-label">Total events</span>
+                    <strong id="totalEvents">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">Registrations</span>
+                    <strong id="totalRegistrations">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">Upcoming</span>
+                    <strong id="upcomingEvents">0</strong>
+                </article>
+            </section>
+
+            <section class="toolbar panel" aria-label="Filters and search">
+                <div class="search-box">
+                    <span class="search-icon">⌕</span>
+                    <input id="searchInput" type="search" placeholder="Search by title, club, venue...">
+                </div>
+
+                <div class="tool-actions">
+                    <select id="sortSelect" aria-label="Sort events">
+                        <option value="upcoming">Soonest first</option>
+                        <option value="popular">Most registered</option>
+                        <option value="latest">Latest added</option>
+                    </select>
+                    <button id="clearFiltersBtn" class="ghost-btn" type="button">Reset</button>
+                </div>
+            </section>
+
+            <div class="filter-row" aria-label="Quick filters">
+                <button class="filter-chip active" type="button" data-filter="all">All events</button>
+                <button class="filter-chip" type="button" data-filter="upcoming">Upcoming</button>
+                <button class="filter-chip" type="button" data-filter="popular">Popular</button>
+            </div>
+
+            <main class="dashboard">
+                <aside class="panel create-panel">
+                    <div class="panel-header compact">
+                        <div>
+                            <p class="eyebrow">Quick add</p>
+                            <h2>New event</h2>
+                        </div>
+                    </div>
+
+                    <form id="eventForm" class="event-form" onsubmit="submitEvent(event)">
+                        <label>
+                            <span>Event title</span>
+                            <input id="title" type="text" placeholder="Tech Talk Night">
+                        </label>
+
+                        <div class="two-column">
+                            <label>
+                                <span>Club</span>
+                                <input id="club" type="text" placeholder="Innovation Club">
+                            </label>
+                            <label>
+                                <span>Date</span>
+                                <input id="date" type="date">
+                            </label>
+                        </div>
+
+                        <label>
+                            <span>Venue</span>
+                            <input id="venue" type="text" placeholder="Main auditorium">
+                        </label>
+
+                        <label>
+                            <span>Description</span>
+                            <textarea id="description" rows="4" placeholder="Tell students what to expect..."></textarea>
+                        </label>
+
+                        <button type="submit" class="primary-btn">Create Event</button>
+                        <p id="message" class="form-message" aria-live="polite"></p>
+                    </form>
+                </aside>
+
+                <section class="panel events-panel">
+                    <div class="panel-header compact">
+                        <div>
+                            <p class="eyebrow">Calendar</p>
+                            <h2>Featured events</h2>
+                        </div>
+                        <div id="eventSummary" class="summary-pill">0 events</div>
+                    </div>
+
+                    <div id="events" class="events-grid" aria-live="polite">
+                        <div class="loading-state">Loading events...</div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
